@@ -1,0 +1,77 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	font-family: 'Google Sans Display';
+}
+:root {
+	--cubic-bezier: cubic-bezier(0.4, 0, 0.2, 1);
+}
+body {
+	background-color: hsl(0 0% 5%);
+	color: #fff;
+	margin: 5rem;
+}
+button,
+a,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+div,
+label {
+	user-select: none;
+}
+button {
+	position: relative;
+	padding: 1rem 0.5rem;
+	background-color: transparent;
+	color: #fff;
+	outline: none;
+	border: none;
+	border-radius: 8rem;
+	isolation: isolate;
+	z-index: 1;
+}
+button::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background-color: hsl(0 0% 9%);
+	border-radius: inherit;
+	opacity: 0;
+	z-index: -1;
+	transition: opacity 150ms var(--cubic-bezier) 20ms;
+}
+button:hover::before {
+	opacity: 1;
+}
+button:active::before {
+	opacity: 0.7;
+}
+.tab-container {
+	position: relative;
+	overflow-x: visible;
+}
+.indicator {
+	--indicator-transition-timing: 250ms;
+	position: absolute;
+	top: var(--y);
+	left: var(--x);
+	bottom: -2px;
+	width: var(--width, 0%);
+	height: 2px;
+	border-radius: 2rem;
+	transform: scale(1);
+	transform-origin: center;
+	background-color: rgb(164, 176, 231);
+	transition: inset var(--indicator-transition-timing) var(--cubic-bezier),
+		width var(--indicator-transition-timing) var(--cubic-bezier);
+}
+
+[copyable='true']:hover {
+	user-select: text;
+}
